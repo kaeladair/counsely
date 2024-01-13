@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
+import { Mic } from '@mui/icons-material';
 
 export default function RecordButton() {
   const [recording, setRecording] = useState(false);
@@ -16,8 +16,20 @@ export default function RecordButton() {
   }
 
   return (
-    <Button variant="contained" startIcon={<PlayArrowIcon />} onClick={recording ? stopRecording : startRecording}>
-      {recording ? 'Stop Recording' : 'Start Recording'}
+    <Button 
+      variant="contained" 
+      onClick={recording ? stopRecording : startRecording}
+      sx={{
+        borderRadius: '50%', 
+        width: '80px', 
+        height: '80px', 
+        backgroundColor: recording ? 'red' : 'blue',
+        '&:hover': {
+          backgroundColor: recording ? 'darkred' : 'darkblue',
+        },
+      }}
+    >
+      <Mic />
     </Button>
   );
 }

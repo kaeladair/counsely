@@ -65,7 +65,7 @@ function Sidebar() {
 
 function MainContent() {
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'white', borderRadius: '8px' }}>
       <Typography variant="h2" gutterBottom>
         Large Text Heading
       </Typography>
@@ -73,7 +73,7 @@ function MainContent() {
       <Typography variant="body1" gutterBottom>
         Small Text Description
       </Typography>
-      <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300' }}>
+      <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <RecordButton />
       </Box>
       <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300' }} />
@@ -93,7 +93,7 @@ function RightPanel() {
 
 function Dashboard() {
   return (
-    <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', width: '100%', height: '100%', margin: '0px' }}>
       <Sidebar />
       <MainContent />
       <RightPanel />
