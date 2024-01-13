@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
-import RecordButton from '../RecordButton.client';
+import RecordButton from './RecordButton.client';
 
 function Sidebar() {
   return (
