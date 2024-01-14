@@ -99,12 +99,14 @@ async def audio_chunk(sid, message):
     
 @sio.on('end_conversation')
 async def end_conversation(sid):
+  print("Conversation ended")
   # Get transcriptions
   transcriptions = ref.child('transcriptions').get()
   
   # Process transcriptions
   client_messages = process_conversation_client_only(transcriptions)
   transcript = process_conversation(transcriptions)
+  
   
   # Send to GPT
   profile_result = profile_eval(client_messages, client)
@@ -136,6 +138,8 @@ def process_conversation_client_only(excerpts):
   for excerpt in excerpts:
     if excerpt['role'] == "patient":
       messages += excerpt['content'] + "\n"
+      
+  return messages
       
 def process_conversation(excerpts):
   messages = ""
