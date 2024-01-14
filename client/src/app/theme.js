@@ -1,13 +1,28 @@
-// import { createTheme } from '@mui/material/styles';
+"use client";
 
-// const theme = createTheme({
-//   palette: {
-//     pink: '#F5B3F6',
-//     pinkLight: '#FFE7FF',
-//     turq: '#6EDEED',
-//     purple: '#885EFF',
-//     purpleLight: 'rgba(136, 94, 255, 0.25)',
-//   },
-// });
+import { ThemeProvider } from "@emotion/react";
+import { createTheme } from "@mui/material/styles";
 
-// export default theme
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#7e57c2",
+    },
+    secondary: {
+      main: "#b39ddb",
+    },
+    background: {
+      default: "#fafafa",
+      paper: "#ffffff",
+      form: "#ffffff",
+    },
+    text: {
+      primary: "#212121",
+      secondary: "#AA43F9",
+    },
+  },
+});
+
+export default function ThemeWrapper({ children }) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}

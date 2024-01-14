@@ -5,64 +5,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
 import RecordButton from './RecordButton.client';
+import Sidebar from '@/components/Sidebar';
 
-function Sidebar() {
-  return (
-    <Drawer variant="permanent" anchor="left" sx={{
-      width: 240,
-      flexShrink: 0,
-      '& .MuiDrawer-paper': {
-        width: 80,
-        boxSizing: 'border-box',
-        borderRadius: '16px',
-        margin: '16px',
-        position: 'relative',
-        float: 'left',
-        height: 'calc(100vh - 32px)'
-      },
-    }}>
-      <List>
-        <ListItem button sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          borderRadius: '50%',
-          margin: '8px',
-          padding: '8px',
-          width: 'auto',
-          height: 'auto',
-        }}>
-          <ListItemIcon sx={{ justifyContent: 'center' }}><HomeIcon /></ListItemIcon>
-        </ListItem>
-        <ListItem button sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          borderRadius: '50%',
-          margin: '8px',
-          padding: '8px',
-          width: 'auto',
-          height: 'auto',
-        }}>
-          <ListItemIcon sx={{ justifyContent: 'center' }}><AccountCircleIcon /></ListItemIcon>
-        </ListItem>
-        <ListItem button sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          borderRadius: '50%',
-          margin: '8px',
-          padding: '8px',
-          width: 'auto',
-          height: 'auto',
-        }}>
-          <ListItemIcon sx={{ justifyContent: 'center' }}><SettingsIcon /></ListItemIcon>
-        </ListItem>
-      </List>
-    </Drawer>
-  );
-}
-
+<Sidebar/>
 function MainContent() {
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'white', borderRadius: '8px' }}>
