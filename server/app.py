@@ -1,11 +1,16 @@
-from flask import Flask, request
+from flask import Flask
 from flask_socketio import SocketIO
-import io
-from scipy.io import wavfile
-import numpy as np
 from transcriber import Transcriber
 import firebase_admin
 from firebase_admin import credentials, db
+from eval_post import profile_eval, next_steps_eval, emotions_eval, therapist_eval
+import asyncio
+
+import dotenv
+dotenv.load_dotenv()
+from openai import AsyncOpenAI
+
+client = AsyncOpenAI()
 
 # Initialize Firebase
 cred = credentials.Certificate("firebase.json")
@@ -61,8 +66,50 @@ def handle_audio_chunk(message):
     # Do things with past 6 transcriptions
 
     ref.child('transcriptions').transaction(transaction_update)
+    
+@socketio.on('end_conversation')
+async def handle_end_conversation():
+  # Get transcriptions
+  transcriptions = ref.child('transcriptions').get()
+  
+  # Process transcriptions
+  client_messages = process_conversation_client_only(transcriptions)
+  transcript = process_conversation(transcriptions)
+  
+  # Send to GPT
+  profile_result = profile_eval(client_messages, client)
+  next_steps_result = next_steps_eval(transcript, client)
+  emotions_result = emotions_eval(transcript, client)
+  therapist_result = therapist_eval(transcript, client)
+  
+  # Wait for all async tasks to complete
+  results = await asyncio.gather(profile_result, next_steps_result, emotions_result, therapist_result)
+  
+  # Create an object holding all function results
+  analysis_results = {
+        "profile": results[0],
+        "next_steps": results[1],
+        "emotions": results[2],
+        "therapist_evaluation": results[3]
+    }
+  
+  # Save to Firebase
+  ref.child('post_analysis').push(analysis_results)
 
+def process_conversation_client_only(excerpts):
+  messages = ""
 
+  for excerpt in excerpts:
+    if excerpt['role'] == "patient":
+      messages += excerpt['content'] + "\n"
+      
+def process_conversation(excerpts):
+  messages = ""
+  
+  for excerpt in excerpts:
+    messages += excerpt['role'] + ": " + excerpt['content'] + "\n"
+    
+  return messages
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

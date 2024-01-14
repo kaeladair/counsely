@@ -1,7 +1,4 @@
-import copy
-
-firebase_db_url = "https://therapy-assist-default-rtdb.firebaseio.com/"
-
+model = "gpt-4-1106-preview"
 async def profile_eval(messages, client) -> str:
   
   content = """
@@ -21,7 +18,7 @@ async def profile_eval(messages, client) -> str:
   
   
   response = await client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model,
         response_format={ "type": "json_object" },
         messages=messages,
         temperature=0
@@ -44,7 +41,7 @@ async def next_steps_eval(transcript, client) -> str:
     ]
     
   response = await client.chat.completions.create(
-          model="gpt-3.5-turbo",
+          model=model,
           response_format={ "type": "json_object" },
           messages=messages,
           temperature=0
@@ -72,7 +69,7 @@ async def emotions_eval(transcript, client) -> str:
     ]
     
   response = await client.chat.completions.create(
-          model="gpt-3.5-turbo",
+          model=model,
           response_format={ "type": "json_object" },
           messages=messages,
           temperature=0
@@ -102,7 +99,7 @@ async def therapist_eval(transcript, client):
     ]
     
   response = await client.chat.completions.create(
-          model="gpt-3.5-turbo",
+          model=model,
           response_format={ "type": "json_object" },
           messages=messages,
           temperature=0
@@ -110,19 +107,3 @@ async def therapist_eval(transcript, client):
     
   performance_scores = response.choices[0].message.content
   return performance_scores
-
-
-def process_conversation_client_only(excerpts):
-  messages = ""
-
-  for excerpt in excerpts:
-    if excerpt['role'] == "patient":
-      messages += excerpt['content'] + "\n"
-      
-def process_conversation(excerpts):
-  messages = ""
-  
-  for excerpt in excerpts:
-    messages += excerpt['role'] + ": " + excerpt['content'] + "\n"
-    
-  return messages
