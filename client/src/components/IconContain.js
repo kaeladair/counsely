@@ -21,7 +21,7 @@ function IconContain({ bgColor, iconColor, icon }) {
     >
       <Icon
       sx={{
-        fontSize: '12px',
+        fontSize: '10px',
         width: "fit-content",
         height: "fit-content",
       }}
