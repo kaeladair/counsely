@@ -5,7 +5,7 @@ import Actions from "./actions";
 
 export default function RightPanel(props) {
   return (
-    <Stack direction="column" height="100%" width="500px" spacing={2}>
+    <Stack direction="column" height="100%" width="fit-content" spacing={2}>
       <Profile />
       <Actions />
     </Stack>

@@ -1,5 +1,5 @@
 "use client";
-
+import backgroundImg from '../../../src/image/backgroundContain.png'
 import React from "react";
 import {
   Drawer,
@@ -14,96 +14,23 @@ import {
   Stack,
   LinearProgress,
   Card,
-  CardContent
+  CardContent,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
-import Tag from "../../components/tag";
+import Tag from "@/components/Tag";
 // import {theme} from '../theme';
 import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
 import RecordButton from "./RecordButton.client";
 import "../../app/global.css";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import MicIcon from '@mui/icons-material/Mic';
-import ChatIcon from '@mui/icons-material/Chat';
-
-function Sidebar() {
-  return (
-    <Box width="80px"
-      height="98vh"
-      backgroundColor='#FFF'
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      borderRadius='10px'
-      margin='10px'
-    >
-      <List>
-        <ListItem
-          button
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "10px",
-            margin: "8px",
-            padding: "8px",
-            width: "40px",
-            height: "40px",
-          }}
-        >
-          <ListItemIcon sx={{ justifyContent: "center" }}>
-            <HomeIcon />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem
-          button
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "10px",
-            margin: "8px",
-            padding: "8px",
-            width: "40px",
-            height: "40px",
-          }}
-        >
-          <ListItemIcon sx={{ justifyContent: "center" }}>
-            <AccountCircleIcon />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem
-          button
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "10px",
-            margin: "8px",
-            padding: "8px",
-            width: "40px",
-            height: "40px",
-          }}
-        >
-          <ListItemIcon sx={{ justifyContent: "center" }}>
-            <SettingsIcon />
-          </ListItemIcon>
-        </ListItem>
-      </List>
-    </Box>
-  );
-}
+import MicIcon from "@mui/icons-material/Mic";
+import ChatIcon from "@mui/icons-material/Chat";
 
 function MainContent() {
   return (
-    // <ThemeProvider theme={theme}>
     <Box
       sx={{
         width: "100vw",
@@ -112,27 +39,50 @@ function MainContent() {
         display: "flex",
         flexDirection: "column",
         alignItems: "left",
-        borderRadius: "8px"
+        borderRadius: "8px",
       }}
     >
-      <Typography variant="h3" gutterBottom>
-        Kael's Hackathon Therapy Session
-      </Typography>
-      <Box
+      <Typography
+        variant="h4"
         sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start', // add this line
-          width: 'fit-content',
-          marginBottom: '10px',
-          gap: '5px'
+          fontWeight: "800",
+          fontFamily: "Inter,sans-serif",
+          marginTop: "0px",
+          marginBottom: "8px"
         }}
       >
-        <Tag textColor="color1" borderColor="color2" tagName="adhd" backgroundColor="color3" />
-        <Tag textColor="color4" borderColor="color5" tagName="anxiety" backgroundColor="color6" />
-      </Box>
-      <Divider variant="left" />
-      <Typography variant="h5" gutterBottom sx={{ mt: 2, color: 'black' }}>
+        Kael's Hackathon Therapy Session
+      </Typography>
+      <Stack direction="row" spacing={2}>
+          <Tag
+            borderColor="3px solid #FECEFF"
+            textColor="#D196D2"
+            tagName="adhd"
+            backgroundColor="#FFE7FF"
+          />
+          <Tag
+            borderColor="3px solid #B7D8FF"
+            textColor="#66A1E7"
+            tagName="anxiety"
+            backgroundColor="#DCECFF"
+          />
+        </Stack>
+      <Divider sx={{
+     width: '100%', // Set the width
+     height: '4px', // Set the height (thickness) to 8px
+     my: '22px', // Set the vertical margin (marginTop and marginBottom) to 22px
+     mx: 0, // Ensure there are no horizontal margins
+     // To make the Divider appear as a line with 8px height, we use the border style
+     border: 0,
+     backgroundColor: 'rgba(0, 0, 0, 0.05);',
+  }} />
+      <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "800",
+            fontFamily: "Inter,sans-serif",
+          }}
+        >
         Record a live transcript
       </Typography>
       <Typography variant="body1" gutterBottom>
@@ -159,15 +109,26 @@ function MainContent() {
           borderRadius: "8px",
           my: 2,
           bgcolor: "grey.300",
-          overflowY: 'auto', // add this line
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'left',
-          justifyContent: 'flex-start',
+          overflowY: "auto", // add this line
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "left",
+          justifyContent: "flex-start",
         }}
       >
-        <Typography variant="h5" margin="10px" color='gray' gutterBottom>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+        <Typography variant="h5" margin="10px" color="gray" gutterBottom>
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It
+          has roots in a piece of classical Latin literature from 45 BC, making
+          it over 2000 years old. Richard McClintock, a Latin professor at
+          Hampden-Sydney College in Virginia, looked up one of the more obscure
+          Latin words, consectetur, from a Lorem Ipsum passage, and going
+          through the cites of the word in classical literature, discovered the
+          undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
+          1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and
+          Evil) by Cicero, written in 45 BC. This book is a treatise on the
+          theory of ethics, very popular during the Renaissance. The first line
+          of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
+          section 1.10.32.
         </Typography>
       </Box>
     </Box>
@@ -198,11 +159,11 @@ function MainContent() {
 
 function SuggestionBox({ tip }) {
   return (
-    <Card sx={{ minWidth: 275, marginBottom: '10px', border: '1px solid gray' }}>
+    <Card
+      sx={{ minWidth: 275, marginBottom: "10px", border: "1px solid gray" }}
+    >
       <CardContent>
-        <Typography variant="body1">
-          {tip}
-        </Typography>
+        <Typography variant="body1">{tip}</Typography>
       </CardContent>
     </Card>
   );
@@ -214,29 +175,144 @@ function RightPanel() {
       sx={{
         width: "50%",
         height: "calc(100vh - 32px)",
-        p: 1,
+        padding: '22px',
         borderRadius: "10px",
-        backgroundColor: 'rgba(255, 255, 255, 0.50)'
+        backgroundColor: "rgba(255, 255, 255, 0.50)",
       }}
     >
       <Box
-        sx={{ borderRadius: "8px", my: 2, p: 2, bgcolor: "grey.300", height: "30%" }}
+        
       >
-        <Typography variant="h6" sx={{ margin: '5px' }}>Patient Mood</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box sx={{ width: 40, height: 40, bgcolor: 'white', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '10px' }}>
-            <span role="img" aria-label="happy">😊</span>
+       {/* patient mood */}
+        <Box sx={{ display: "flex", alignItems: "center", width:"100%",
+      gap: "12px",
+   
+      justifyContent :"center",
+      alignItems :"center",
+
+    
+      backgroundColor : "#fff",
+          borderRadius : "20px",
+          padding : "18px",
+  
+          width : "300px",
+          alignContent : "center" }}>
+          <Box
+            sx={{
+              width: 40,
+              height: 40,
+              bgcolor: "white",
+              borderRadius: "8px",
+              display: "flex",
+              gap: "12px",
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: "10px",
+            }}
+          >
+           <span
+  role="img"
+  aria-label="happy"
+  style={{
+    fontSize: '30px', // Adjust the size as needed
+    backgroundColor: '#E2E2E2',
+    borderRadius: '22px',
+    gap: "12px",
+  
+    margin: '0px',
+    width: 'fit-content',
+    padding: '10px', // Add some padding around the emoji
+    display: 'inline-flex', // Use inline-flex to center the emoji and enable padding
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  }}
+>
+  😊
+</span>
           </Box>
-          <Typography variant="h4" >Happy</Typography>
+          <Stack width="100%" direction="column">
+            <Typography variant="p"
+          gutterBottom
+          color="text.primary"
+          sx={{
+            fontWeight: "500",
+            fontFamily: "Inter,sans-serif",
+            color: "rgba(0,0,0,.5)",
+            fontSize: "16px",
+            
+          }}>
+          Patient Mood
+        </Typography>
+          <Typography variant="h6"
+          sx={{
+            fontWeight: "800",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '24px'
+          }}>Happy</Typography>
+          </Stack>
+          
         </Box>
       </Box>
       <Box
-        sx={{ borderRadius: "8px", p: 2, my: 2, bgcolor: "grey.300", height: "55%" }}
+         width="100%"
+         height="100%"
+         direction="column"
+         justifyContent="center"
+         alignItems="center"
+         spacing={2}
+       
+         backgroundColor= "#fff"
+             borderRadius= "40px"
+             padding= "32px 22px"
+            border= "4px solid rgba(0,0,0, .1)"
+             width= "300px"
+             alignContent= "center"
       >
-        <Typography variant="h6" sx={{ margin: '5px' }}>Recommendations</Typography>
-        <SuggestionBox tip="Stay calm and focused during the session. Stay calm and focused during the session. Stay calm and focused during the session." />
-        <SuggestionBox tip="Be open and honest with your feelings. Stay calm and focused during the session. Stay calm and focused during the session." />
-        <SuggestionBox tip="Don't hesitate to ask questions. Stay calm and focused during the session. Stay calm and focused during the session." />
+        <Typography variant="h4" gutterBottom
+      sx={{
+        fontWeight:'800',
+        fontFamily:'Inter, sans-serif',
+        fontSize:'24px'
+      }}>
+          Recommendations
+        </Typography>
+        <Box sx={{
+    border: "4px solid rgba(0, 0, 0, .1)",
+    borderRadius: "20px",
+    padding: "22px",
+    fontWeight: "600",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '16px'
+
+  }}>
+
+Stay calm and focused during the session.
+  </Box>
+  <Box sx={{
+    border: "4px solid rgba(0, 0, 0, .1)",
+    borderRadius: "20px",
+    padding: "22px",
+    fontWeight: "600",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '16px'
+
+  }}>
+
+Stay calm and focused during the session.
+  </Box>
+  <Box sx={{
+    border: "4px solid rgba(0, 0, 0, .1)",
+    borderRadius: "20px",
+    padding: "22px",
+    fontWeight: "600",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '16px'
+
+  }}>
+
+Stay calm and focused during the session.
+  </Box>
       </Box>
     </Box>
   );
@@ -251,9 +327,19 @@ function Dashboard() {
       alignItems="center"
       justifyContent="space-between"
       overflow="hidden"
-      paddingY='10px'
-      paddingRight='10px'
-      backgroundColor="white" // replace 'darkerColor' with the color you want
+      paddingY="10px"
+      paddingRight="10px"
+      paddingLeft="110px"
+      sx={{
+        backgroundImage: `url(${backgroundImg})`, // Use the imported image
+        backgroundSize: 'cover', // Ensure the image covers the full container
+        backgroundRepeat: 'no-repeat', // Do not tile the image
+        backgroundPosition: 'center center', // Center the image
+
+        height: '100vh', // Full height of the viewport
+        width: '100vw',
+
+      }}// replace 'darkerColor' with the color you want
     >
       <MainContent />
       <RightPanel />

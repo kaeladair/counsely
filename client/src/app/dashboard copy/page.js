@@ -39,7 +39,20 @@ function RightPanel() {
 function Dashboard() {
   return (
     <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', width: '100%', height: '100%', margin: '0px' }}>
+     <Box
+     sx={{
+      height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    mx: 'auto', // Center horizontally
+     }}
+     >
       <Sidebar />
+     </Box>
+      
       <MainContent />
       <RightPanel />
     </Container>

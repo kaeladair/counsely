@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import ThemeWrapper from "./theme";
+import Sidebar from "./sidebar";
 
 // import '../global.css'
 
@@ -14,8 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        
-        <ThemeWrapper>{children}</ThemeWrapper>
+        <ThemeWrapper>
+          <>
+            <Sidebar />
+            {children}
+          </>
+        </ThemeWrapper>
       </body>
     </html>
   );

@@ -10,10 +10,10 @@ function Tag({ textColor, borderColor, tagName, backgroundColor }) {
         color: textColor,
         backgroundColor: backgroundColor,
         border: borderColor,
-        padding: "18px 12px",
+        padding: "8px 6px",
         borderRadius: "12px",
         fontWeight: "600",
-        fontSize: "18px",
+        fontSize: "14px",
       }}
     />
   );

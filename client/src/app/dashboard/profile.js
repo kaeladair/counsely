@@ -1,5 +1,8 @@
 import { Stack, Avatar, Typography, Chip, Icon } from "@mui/material";
-
+import IconContain from "@/components/IconContain";
+import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
+import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded';
+import Tag from "@/components/Tag";
 export default function Profile() {
   return (
     <Stack
@@ -9,26 +12,73 @@ export default function Profile() {
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      padding={2}
+    
+      backgroundColor= "#fff"
+          borderRadius= "40px"
+          padding= "32px 22px"
+  
+          width= "300px"
+          alignContent= "center"
     >
       <Avatar />
-      <Typography>Mia Brown</Typography>
+      <Typography variant="h4" gutterBottom
+      sx={{
+        fontWeight:'800',
+        fontFamily:'Inter, sans-serif',
+        fontSize:'24px'
+      }}>Kael</Typography>
+{/* communicate style */}
       <Stack width="100%" direction="row" spacing={2}>
-        <Icon width="24px" height="24px">
-          <MessageIcon />
-        </Icon>
+       <IconContain
+        bgColor='rgba(136, 94, 255, 0.25)'
+        iconColor='rgba(136, 94, 255, 1)'
+        icon={<ChatBubbleRoundedIcon/>}
+       />
+       {/* communication */}
         <Stack width="100%" direction="column">
-          <Typography>Communication Style</Typography>
-          <Typography>Initiator</Typography>
+          <Typography variant="p"
+          gutterBottom
+          color="text.primary"
+          sx={{
+            fontWeight: "500",
+            fontFamily: "Inter,sans-serif",
+            color: "rgba(0,0,0,.5)",
+            fontSize: "12px",
+            
+          }}>Communication style</Typography>
+          <Typography variant="h6"
+          sx={{
+            fontWeight: "800",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '16px'
+          }}>Initiator</Typography>
         </Stack>
       </Stack>
+      {/* learning */}
       <Stack width="100%" direction="row" spacing={2}>
-        <Icon>
-          <EditIcon />
-        </Icon>
+       <IconContain
+        bgColor='rgba(136, 94, 255, 0.25)'
+        iconColor='rgba(136, 94, 255, 1)'
+        icon={<LocalLibraryRoundedIcon/>}
+       />
+       {/* communication */}
         <Stack width="100%" direction="column">
-          <Typography>Learning Style</Typography>
-          <Typography>Collaborative Learner</Typography>
+          <Typography variant="p"
+          gutterBottom
+          color="text.primary"
+          sx={{
+            fontWeight: "500",
+            fontFamily: "Inter,sans-serif",
+            color: "rgba(0,0,0,.5)",
+            fontSize: "12px",
+            
+          }}>Learning style</Typography>
+          <Typography variant="h6"
+          sx={{
+            fontWeight: "800",
+            fontFamily: "Inter,sans-serif",
+            fontSize: '16px'
+          }}>Collaborative learner</Typography>
         </Stack>
       </Stack>
       <Stack
@@ -38,10 +88,21 @@ export default function Profile() {
         justifyContent="center"
       >
         <Typography>Interests</Typography>
-        <Stack width="100%" direction="row" spacing={1}>
-          <Chip label="Art" />
-          <Chip label="Music" />
-          <Chip label="Dance" />
+        <Stack direction="row" spacing='4px'>
+          <Tag
+            borderColor="3px solid #B8A9F6"
+            textColor="rgba(136, 94, 255, 1)"
+            tagName="reading"
+            backgroundColor="#D2CAFA"
+          />
+          <Tag
+            borderColor="3px solid #B8A9F6"
+            textColor="rgba(136, 94, 255, 1)"
+            tagName="coding"
+            backgroundColor="#D2CAFA"
+          />
+          
+          
         </Stack>
       </Stack>
     </Stack>

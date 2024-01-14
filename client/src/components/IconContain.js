@@ -10,7 +10,7 @@ function IconContain({ bgColor, iconColor, icon }) {
       sx={{
         fontSize: "inherit",
         padding: "8px",
-        borderRadius: "6px",
+        borderRadius: "12px",
         width: "fit-content",
         height: "fit-content",
         display: 'inline-flex',
@@ -21,7 +21,9 @@ function IconContain({ bgColor, iconColor, icon }) {
     >
       <Icon
       sx={{
-        fontSize: '12px'
+        fontSize: '12px',
+        width: "fit-content",
+        height: "fit-content",
       }}
       >{icon}</Icon>
     </Box>
