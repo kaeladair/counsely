@@ -1,8 +1,11 @@
-from flask import Flask
-from flask_socketio import SocketIO
-from transcriber import Transcriber
+from fastapi import FastAPI
+from socket_wrapper import socketio_mount
+
 import firebase_admin
 from firebase_admin import credentials, db
+from transcriber import Transcriber  # Ensure this is compatible with async
+import json
+from openai import AsyncOpenAI  # Assuming this is an async compatible client
 from eval_post import profile_eval, next_steps_eval, emotions_eval, therapist_eval
 from eval_live import recommend_eval, mood_eval
 import asyncio
@@ -20,9 +23,9 @@ firebase_admin.initialize_app(cred)
 firebase_db_url = "https://therapy-assist-default-rtdb.firebaseio.com/"
 ref = db.reference('/conversation', url=firebase_db_url)
 
-# Initialize Flask and SocketIO
-app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+# Initialize FastAPI and SocketIO
+app = FastAPI()
+sio = socketio_mount(app)
 
 # Transcriber instance
 transcriber = Transcriber()
@@ -30,9 +33,14 @@ transcriber = Transcriber()
 @app.route('/')
 def index():
     return "Audio Transcription Service"
+  
+# Define SocketIO events
+@sio.on('connect')
+async def connect(sid, environ):
+    print("Client connected", sid)
     
-@socketio.on('audio_chunk')
-async def handle_audio_chunk(message):
+@sio.on('audio_chunk')
+async def audio_chunk(sid, message):
     print("Received audio chunk")
     
     # Process audio data that is base64 encoded
@@ -54,21 +62,21 @@ async def handle_audio_chunk(message):
         
         transcriptions.append({
             'role': message['role'],
-            'text': user_text
-        
+            'content': user_text
         })
-        
+                
         # Check if transactions is a factor of 6
-        if len(transcriptions) % 6 == 0:
+        if len(transcriptions) % 3 == 0:
             has_six = True
-            past_six = transcriptions[-6:]
+            past_six = transcriptions[-3:]
         
         return transcriptions
+    
+    ref.child('transcriptions').transaction(transaction_update)
     
     # Do things with past 6 transcriptions
     if has_six:
         # Process transcriptions
-        
         transcript = process_conversation(past_six)
         
         # Send to GPT
@@ -85,12 +93,12 @@ async def handle_audio_chunk(message):
         }
         
         # Save to Firebase
-        ref.child('live_analysis').push(analysis_results)
+        ref.child('live_analysis').set(analysis_results)
         
-    ref.child('transcriptions').transaction(transaction_update)
     
-@socketio.on('end_conversation')
-async def handle_end_conversation():
+    
+@sio.on('end_conversation')
+async def end_conversation(sid):
   # Get transcriptions
   transcriptions = ref.child('transcriptions').get()
   
@@ -116,7 +124,11 @@ async def handle_end_conversation():
     }
   
   # Save to Firebase
-  ref.child('post_analysis').push(analysis_results)
+  ref.child('post_analysis').set(analysis_results)
+  
+@sio.on('disconnect')
+async def disconnect(sid):
+    print('Client disconnected', sid)
 
 def process_conversation_client_only(excerpts):
   messages = ""
@@ -133,5 +145,7 @@ def process_conversation(excerpts):
     
   return messages
 
+# Run the app
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
