@@ -8,7 +8,7 @@ from transformers.utils import is_flash_attn_2_available
 import pyaudio
 import wave
 import collections
-from transcriber import Transcriber
+from server.transcriber import Transcriber
 
 
 

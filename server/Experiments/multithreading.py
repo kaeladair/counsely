@@ -12,7 +12,7 @@ from collections import deque
 import threading
 import signal
 import time
-from transcriber import Transcriber
+from server.transcriber import Transcriber
 
 import firebase_admin
 from firebase_admin import credentials, db

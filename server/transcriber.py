@@ -30,6 +30,9 @@ class Transcriber:
         return encoded_audio
 
     def decode_audio_to_np_array(self, encoded_audio):
+        if ";base64," in encoded_audio:
+            header, encoded_audio = encoded_audio.split(";base64,")
+    
         decoded_audio = base64.b64decode(encoded_audio)
         sr, audio = wavfile.read(io.BytesIO(decoded_audio))
         audio = audio.astype(np.float32)
