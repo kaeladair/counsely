@@ -29,7 +29,7 @@ async def mood_eval(messages, client):
     You will be given the transcript of what a patient told a therapist during a therapy session. 
     Generate a json with the following format:
     {
-      "mood": "one of the following four words to best describe the client's current mood: Hopeful, Melancholy, Frustrated, Fearful"
+      "mood": "a word to describe the patient's mood"
     }
     """
 

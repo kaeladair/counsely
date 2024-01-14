@@ -58,10 +58,10 @@ async def emotions_eval(transcript, client) -> str:
     Analyze the following transcript of a conversation and evaluate the prevalence of four emotions: Happy, Sad, Fear, and Anger. Provide a score for each emotion as a percentage, with 0% meaning the emotion is not present at all and 100% meaning the emotion is extremely present. The scores should add up to no more than 100%.
     Format your response as a JSON object like this:
     {
-      "Happy": 25,
-      "Sad": 50,
-      "Fear": 15,
-      "Anger": 10
+      "happy": 25,
+      "sad": 50,
+      "fear": 15,
+      "anger": 10
     }
     """
 
@@ -89,9 +89,9 @@ async def therapist_eval(transcript, client):
     - Sensitivity: The therapist's awareness and responsiveness to the patient's needs and emotions.
     Format your response as a JSON object like this:
     {
-      "Language": 80,
-      "Empathy": 75,
-      "Sensitivity": 90
+      "language": 80,
+      "empathy": 75,
+      "sensitivity": 90
     }
     """
 

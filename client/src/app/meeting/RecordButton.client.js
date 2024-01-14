@@ -22,10 +22,10 @@ export default function RecordButton() {
 
   function stopRecording() {
     setRecording(false)
+    socket.emit('end_converstion')
   }
 
   function onAudio(audio) {
-
     socket.emit('audio_chunk', {
       role: ROLE,
       content: audio,
