@@ -2,10 +2,10 @@ model = "gpt-4-1106-preview"
 async def recommend_eval(messages, client):
 
   content = """
-    You will be given the transcript of what a patient told a therapist during a therapy session. 
+    You will be given the transcript of a therapy session. You are to generate four concise recommendations for the therapist to talk about next.
     Generate a json with the following format:
     {
-      "Recommendation": "60 to 80 characters making a recommendation to the therapist how they can better help their client",
+      "recommendations": ["List", "of", "four", "recommendations"]
     }
     """
 
