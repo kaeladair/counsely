@@ -11,7 +11,7 @@ import {Mic} from '@mui/icons-material'
 
 const socket = io('http://localhost:5000')
 
-const ROLE = 'therapist'
+const ROLE = 'client'
 
 export default function RecordButton() {
   const [recording, setRecording] = useState(false)
