@@ -35,17 +35,30 @@ def handle_audio_chunk(message):
     user_text = transcriber.transcribe(audio_np, sr)
     
 
-
+    has_six = False
+    past_six = []
     # Save transcription to Firebase
     def transaction_update(transcriptions):
+        nonlocal has_six
+        nonlocal past_six
+        
         if transcriptions is None:
             transcriptions = []
+        
         transcriptions.append({
             'role': message['role'],
             'text': user_text
         
         })
+        
+        # Check if transactions is a factor of 6
+        if len(transcriptions) % 6 == 0:
+            has_six = True
+            past_six = transcriptions[-6:]
+        
         return transcriptions
+    
+    # Do things with past 6 transcriptions
 
     ref.child('transcriptions').transaction(transaction_update)
 
