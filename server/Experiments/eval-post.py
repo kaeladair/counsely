@@ -27,7 +27,7 @@ def update_mood(excerpts) -> str:
   if no_client: return
 
   excerpts = ref_get()
-  counter = 0
+  counter = 1
   num_assertive, num_passive = 0, 0
   message_array = copy.deepcopy(prompt)
 
@@ -35,17 +35,19 @@ def update_mood(excerpts) -> str:
     if excerpt.role == "client":
       message_array.append({"role": "user", "content": excerpt.content})
       counter += 1
-      if counter % 24 == 0:
-        response = client.chat.completions.create(
-          model="gpt-3.5-turbo",
-          messages=message_array,
-          temperature=0
-        )
-        if response.choices[0].message.content == "Assertive":
-          num_assertive += 1
-        else:
-          num_passive += 1
-        message_array = copy.deepcopy(prompt)
+
+    if counter % 24 == 0:
+      response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=message_array,
+        temperature=0
+      )
+      if response.choices[0].message.content == "Assertive":
+        num_assertive += 1
+      else:
+        num_passive += 1
+
+      message_array = copy.deepcopy(prompt)
 
   if num_assertive > num_passive:
     ref.child('comm_style').set("Assertive")
@@ -53,6 +55,3 @@ def update_mood(excerpts) -> str:
     ref.child('comm_style').set("Passive")
   else:
     ref.child('comm_style').set("Neutral")
-
-
-
