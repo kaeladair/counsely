@@ -3,13 +3,10 @@ import { Drawer, List, ListItem, ListItemIcon, Box, Typography, Divider, Contain
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
-<<<<<<< HEAD
 import Tag from '../../components/tag';
 // import {theme} from '../theme';
-=======
 import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
 import RecordButton from './RecordButton.client';
->>>>>>> a665a11eebe33f5a5dd9f807351d01f90471ab98
 
 function Sidebar() {
   return (
