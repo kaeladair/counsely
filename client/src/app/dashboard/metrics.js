@@ -156,7 +156,7 @@ export default function Metrics({data}) {
       >
         {/* language */}
         <PercentageContain
-          percentage={data.therapist_evaluation.language}
+          percentage={data?.therapist_evaluation.language}
           bgColor="rgba(136, 94, 255, 0.25)"
           iconColor="rgba(136, 94, 255, 1)"
           title="Language"
@@ -173,7 +173,7 @@ export default function Metrics({data}) {
         />
         {/* empathy */}
         <PercentageContain
-          percentage={data.therapist_evaluation.empathy}
+          percentage={data?.therapist_evaluation.empathy}
           bgColor="rgba(245, 179, 246, 0.25)"
           iconColor="rgba(229, 154, 230, 1)"
           title="Empathy"
@@ -191,7 +191,7 @@ export default function Metrics({data}) {
         />
         {/* sensitivity */}
         <PercentageContain
-          percentage={data.therapist_evaluation.sensitivity}
+          percentage={data?.therapist_evaluation.sensitivity}
           bgColor="rgba(196, 248, 255, 0.48)"
           iconColor="rgba(110, 222, 237, 1)"
           title="Sensitivity"

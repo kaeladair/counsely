@@ -10,18 +10,23 @@ import RightPanel from './rightPanel'
 import Metrics from './metrics'
 
 import db from '../firebase'
+import {ref, get, child} from 'firebase/database'
 
 function Dashboard() {
   const [data, setData] = React.useState(null)
   useEffect(() => {
-    const postAnalysisRef = db.ref('/conversation/postAnalysis')
+    const postAnalysisRef = ref(db, '/conversation/post_analysis')
 
     // Fetch the data
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
-        const snapshot = await postAnalysisRef.once('value')
-        const data = snapshot.val()
-        setData(data)
+        get(postAnalysisRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            setData(snapshot.val())
+          } else {
+            console.log('No data available')
+          }
+        })
       } catch (error) {
         console.error('Error fetching data: ', error)
         // Handle the error according to your needs

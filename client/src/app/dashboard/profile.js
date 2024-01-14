@@ -59,7 +59,7 @@ export default function Profile({data}) {
               fontSize: '16px',
             }}
           >
-            {data.profile.communication_style}
+            {data?.profile.communication_style}
           </Typography>
         </Stack>
       </Stack>
@@ -93,7 +93,7 @@ export default function Profile({data}) {
               fontSize: '16px',
             }}
           >
-            {data.profile.learning_style}
+            {data?.profile.learning_style}
           </Typography>
         </Stack>
       </Stack>
@@ -105,7 +105,7 @@ export default function Profile({data}) {
       >
         <Typography>Interests</Typography>
         <Stack direction="row" spacing="4px">
-          {data.profile.interests.map((interest) => (
+          {data?.profile.interests?.map((interest) => (
             <Tag
               borderColor="3px solid #B8A9F6"
               textColor="rgba(136, 94, 255, 1)"

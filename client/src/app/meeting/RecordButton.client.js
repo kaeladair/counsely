@@ -22,7 +22,7 @@ export default function RecordButton() {
 
   function stopRecording() {
     setRecording(false)
-    socket.emit('end_converstion')
+    socket.emit('end_conversation')
   }
 
   function onAudio(audio) {
