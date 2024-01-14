@@ -16,7 +16,7 @@ function patientMood() {
       backgroundColor: '#fff',
       borderRadius: '20px',
       padding: '18px',
-
+      
       width: '300px',
       alignContent: 'center',
     }}

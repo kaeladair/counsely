@@ -1,5 +1,6 @@
 "use client";
 import backgroundImg from "../../../src/image/backgroundContain.png";
+import Transcript from "./Transcript";
 import React from "react";
 import {
   Drawer,
@@ -95,6 +96,7 @@ function MainContent() {
         Press Record to start a live session.
       </Typography>
       <Microphone />
+      <Transcript/>
     </Box>
     // </ThemeProvider>
   );
