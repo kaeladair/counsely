@@ -12,8 +12,8 @@ function Microphone() {
     backgroundColor= "#fff"
         borderRadius= "40px"
         padding= "32px 22px"
-        width= "fit-content"
-        maxWidth= "300px"
+      width="100%"
+       
         alignContent= "center"
       >
         <RecordButton />

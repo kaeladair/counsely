@@ -41,13 +41,13 @@ export default function RecordButton() {
           borderRadius: '50%',
           width: '80px',
           height: '80px',
-          backgroundColor: recording ? 'red' : 'blue',
+          backgroundColor: recording ? 'red' : '#885EFF',
           '&:hover': {
-            backgroundColor: recording ? 'darkred' : 'darkblue',
+            backgroundColor: recording ? 'darkred' : '#885EFF',
           },
         }}
       >
-        <Mic />
+        <Mic sx={{fontSize:"40px"}}/>
         <VoiceActivityComponent recording={recording} onAudio={onAudio} />
       </Button>
     </>
