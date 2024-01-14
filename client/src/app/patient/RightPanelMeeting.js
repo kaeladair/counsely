@@ -43,9 +43,11 @@ function RightPanelMeeting() {
         >
           Recommendations
         </Typography>
-        {analysis?.recommendation?.recommendations?.map((recommendation) => (
-          <Recommendations text={recommendation} />
-        ))}
+        {analysis?.recommendation?.recommendations?.map(
+          (recommendation, index) => (
+            <Recommendations text={recommendation} key={index} />
+          ),
+        )}
       </Box>
     </Box>
   )

@@ -42,11 +42,13 @@ export default function Actions({data}) {
         Send actionable tasks based on your conversation and view your patient’s
         status
       </Typography>
-      {data?.next_steps.recommendations.slice(-4).map((recommendation) => (
-        <Typography variant="body1" gutterBottom>
-          {recommendation}
-        </Typography>
-      ))}
+      {data?.next_steps.recommendations
+        .slice(-4)
+        .map((recommendation, index) => (
+          <Typography variant="body1" key={index} gutterBottom>
+            {recommendation}
+          </Typography>
+        ))}
     </Stack>
   )
 }

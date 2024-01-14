@@ -1,19 +1,19 @@
-import React from "react";
-import PatientMood from "./patientMood";
-import { Box, Stack, Typography } from "@mui/material";
-import Recommendations from "./Recommendation";
-import { useAnalysis } from "./FirebaseContext";
+import React from 'react'
+import PatientMood from './patientMood'
+import {Box, Stack, Typography} from '@mui/material'
+import Recommendations from './Recommendation'
+import {useAnalysis} from './FirebaseContext'
 
 function RightPanelMeeting() {
-  const analysis = useAnalysis();
+  const analysis = useAnalysis()
   return (
     <Box
       sx={{
-        width: "50%",
-        height: "calc(100vh - 32px)",
-        padding: "22px",
-        borderRadius: "10px",
-        backgroundColor: "rgba(255, 255, 255, 0.50)",
+        width: '50%',
+        height: 'calc(100vh - 32px)',
+        padding: '22px',
+        borderRadius: '10px',
+        backgroundColor: 'rgba(255, 255, 255, 0.50)',
       }}
     >
       <Box marginBottom="20px">
@@ -38,19 +38,21 @@ function RightPanelMeeting() {
           variant="h4"
           gutterBottom
           sx={{
-            fontWeight: "800",
-            fontFamily: "Inter, sans-serif",
-            fontSize: "24px",
+            fontWeight: '800',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '24px',
           }}
         >
           Recommendations
         </Typography>
-        {analysis?.recommendation?.recommendations?.map((recommendation) => (
-          <Recommendations text={recommendation} />
-        ))}
+        {analysis?.recommendation?.recommendations?.map(
+          (recommendation, index) => (
+            <Recommendations key={index} text={recommendation} />
+          ),
+        )}
       </Stack>
     </Box>
-  );
+  )
 }
 
-export default RightPanelMeeting;
+export default RightPanelMeeting
