@@ -32,7 +32,9 @@ async def next_steps_eval(transcript, client) -> str:
   content = """
     Based on the following transcript of a therapy session, provide suggestions for what the therapist should do next to assist the patient. Consider the patient's needs, communication style, and any issues or concerns raised during the session. Provide practical and specific steps that the therapist can take in the next session or as follow-up actions.
     Generate a json with the following format:
-    ["Review patient's progress", "Discuss new stressors", "Introduce new techniques"]
+    {"recommendations":
+      ["Review patient's progress", "Discuss new stressors", "Introduce new techniques"]
+    }
     """
 
   messages = [

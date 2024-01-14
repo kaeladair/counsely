@@ -4,7 +4,9 @@ from transcriber import Transcriber
 import firebase_admin
 from firebase_admin import credentials, db
 from eval_post import profile_eval, next_steps_eval, emotions_eval, therapist_eval
+from eval_live import recommend_eval, mood_eval
 import asyncio
+import json
 
 import dotenv
 dotenv.load_dotenv()
@@ -30,7 +32,7 @@ def index():
     return "Audio Transcription Service"
     
 @socketio.on('audio_chunk')
-def handle_audio_chunk(message):
+async def handle_audio_chunk(message):
     print("Received audio chunk")
     
     # Process audio data that is base64 encoded
@@ -64,7 +66,27 @@ def handle_audio_chunk(message):
         return transcriptions
     
     # Do things with past 6 transcriptions
-
+    if has_six:
+        # Process transcriptions
+        
+        transcript = process_conversation(past_six)
+        
+        # Send to GPT
+        recommend_result = recommend_eval(transcript, client)
+        mood_result = mood_eval(transcript, client)
+        
+        # Wait for all async tasks to complete
+        results = await asyncio.gather(recommend_result, mood_result)
+        
+        # Create an object holding all function results
+        analysis_results = {
+            "recommendation": json.loads(results[0]),
+            "mood": json.loads(results[1])
+        }
+        
+        # Save to Firebase
+        ref.child('live_analysis').push(analysis_results)
+        
     ref.child('transcriptions').transaction(transaction_update)
     
 @socketio.on('end_conversation')
@@ -87,10 +109,10 @@ async def handle_end_conversation():
   
   # Create an object holding all function results
   analysis_results = {
-        "profile": results[0],
-        "next_steps": results[1],
-        "emotions": results[2],
-        "therapist_evaluation": results[3]
+        "profile": json.loads(results[0]),
+        "next_steps": json.loads(results[1]),
+        "emotions": json.loads(results[2]),
+        "therapist_evaluation": json.loads(results[3])
     }
   
   # Save to Firebase
