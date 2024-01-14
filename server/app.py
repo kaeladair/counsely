@@ -98,8 +98,11 @@ async def audio_chunk(sid, message):
     
     
 @sio.on('end_conversation')
-async def end_conversation(sid):
+async def end_conversation(sid, role):
   print("Conversation ended")
+  if role == "patient":
+    return
+  
   # Get transcriptions
   transcriptions = ref.child('transcriptions').get()
   

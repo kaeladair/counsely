@@ -22,7 +22,7 @@ export default function RecordButton() {
 
   function stopRecording() {
     setRecording(false)
-    socket.emit('end_conversation')
+    socket.emit('end_conversation', ROLE)
   }
 
   function onAudio(audio) {
@@ -47,7 +47,7 @@ export default function RecordButton() {
           },
         }}
       >
-        <Mic sx={{fontSize:"40px"}}/>
+        <Mic sx={{fontSize: '40px'}} />
         <VoiceActivityComponent recording={recording} onAudio={onAudio} />
       </Button>
     </>
