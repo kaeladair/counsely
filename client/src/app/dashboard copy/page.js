@@ -3,13 +3,8 @@ import { Drawer, List, ListItem, ListItemIcon, Box, Typography, Divider, Contain
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
-<<<<<<< HEAD
-import Tag from '../../components/tag';
-// import {theme} from '../theme';
-=======
 import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
 import RecordButton from './RecordButton.client';
->>>>>>> a665a11eebe33f5a5dd9f807351d01f90471ab98
 
 function Sidebar() {
   return (
@@ -69,18 +64,8 @@ function Sidebar() {
 }
 
 function MainContent() {
-
   return (
-    // <ThemeProvider theme={theme}>
-    <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center',backgroundColor: 'white', borderRadius: '8px' }}>
-      <Tag
-        tagName='ADHD'
-            textColor = '#D196D2'
-            backgroundColor= '#FFE7FF'
-            borderColor = '3px solid #D196D2'
-          
-      />
-
+    <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'white', borderRadius: '8px' }}>
       <Typography variant="h2" gutterBottom>
         Large Text Heading
       </Typography>
@@ -93,7 +78,6 @@ function MainContent() {
       </Box>
       <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300' }} />
     </Box>
-    // </ThemeProvider>
   );
 }
 

@@ -49,33 +49,22 @@ def record_audio(shared_buffer, shutdown_flag):
     
     # Checking ambient noise
     print("\nChecking ambient noise...", end="", flush=True)
-    long_term_noise_level = 0  # Placeholder for noise level over time
+    ambient_noise_level = 0  # Placeholder for noise level over time
     current_noise_level = 0
     for _ in range(int(16000 / 512 * ambient_duration)):
         data = stream.read(512)
-        long_term_noise_level, current_noise_level, _ = get_levels(data, long_term_noise_level, current_noise_level)
+        _, ambient_noise_level, current_noise_level = get_levels(data, ambient_noise_level, current_noise_level)
 
     print("\nStart speaking.", flush=True)
-    silence_duration = 0
-    ambient_noise_level = long_term_noise_level
     temp_frames = []  # Temporary storage for frames
-    audio_buffer = deque(maxlen=frames_in_buffer)  # Buffer to store last few seconds of audio
 
     try:
         while not shutdown_flag.is_set():
             data = stream.read(512)
-            long_term_noise_level, current_noise_level, voice_activity = get_levels(data, long_term_noise_level, current_noise_level)
-            audio_buffer.append(data)
+            _, ambient_noise_level, current_noise_level = get_levels(data, ambient_noise_level, current_noise_level)
 
-            if voice_activity:
-                if current_noise_level > ambient_noise_level + 100:  # Adjust threshold as needed
-                    temp_frames.append(data)
-                    silence_duration = 0
-                else:
-                    silence_duration += (512 / 16000)
-                    if silence_duration > 2:
-                        # End of voice activity
-                        break
+            if current_noise_level > ambient_noise_level + 100:  # Adjust threshold as needed
+                temp_frames.append(data)
 
             if len(temp_frames) >= frames_in_buffer:
                 # Once we have 5 seconds worth of audio, put it into the shared buffer
@@ -99,7 +88,8 @@ def process_audio(shared_buffer, shutdown_flag):
                 buffer = io.BytesIO()
                 with wave.open(buffer, 'wb') as wf:
                     wf.setparams((1, 2, 16000, 0, 'NONE', 'NONE'))  # Mono, 16-bit, 16kHz
-                    wf.writeframes(audio_data)               
+                    wf.writeframes(audio_data)
+
 
                 # Convert BytesIO object to numpy array
                 buffer.seek(0)
@@ -119,6 +109,8 @@ def process_audio(shared_buffer, shutdown_flag):
 
                 # Transactionally update the database
                 ref.child('transcriptions').transaction(transaction_update)
+                
+                    
         else:
             time.sleep(0.1)  # Sleep briefly if the buffer is empty
 
@@ -146,4 +138,3 @@ processing_thread.start()
 # Join threads
 recording_thread.join()
 processing_thread.join()
-
