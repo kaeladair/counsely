@@ -1,21 +1,22 @@
-import React from 'react';
-import Chip from '@mui/material/Chip';
+import React from "react";
+import Chip from "@mui/material/Chip";
 
-function tag({textColor, borderColor, tagName, backgroundColor}) {
+function Tag({ textColor, borderColor, tagName, backgroundColor }) {
   return (
-      <Chip 
-      label={tagName} 
-      variant="outlined" 
+    <Chip
+      label={tagName}
+      variant="outlined"
       sx={{
         color: textColor,
         backgroundColor: backgroundColor,
         border: borderColor,
-        padding: '18px 12px',
-        borderRadius: '12px',
-        fontWeight: '600',
-        fontSize: '18px',
-      }} />
-  )
+        padding: "18px 12px",
+        borderRadius: "12px",
+        fontWeight: "600",
+        fontSize: "18px",
+      }}
+    />
+  );
 }
 
-export default tag
+export default Tag;
