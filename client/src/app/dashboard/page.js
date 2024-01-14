@@ -3,6 +3,8 @@ import { Drawer, List, ListItem, ListItemIcon, Box, Typography, Divider, Contain
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
+import Tag from '../../components/tag';
+// import {theme} from '../theme';
 
 function Sidebar() {
   return (
@@ -62,8 +64,18 @@ function Sidebar() {
 }
 
 function MainContent() {
+
   return (
+    // <ThemeProvider theme={theme}>
     <Box component="main" sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Tag
+        tagName='ADHD'
+            textColor = '#D196D2'
+            backgroundColor= '#FFE7FF'
+            borderColor = '3px solid #D196D2'
+          
+      />
+
       <Typography variant="h2" gutterBottom>
         Large Text Heading
       </Typography>
@@ -74,6 +86,7 @@ function MainContent() {
       <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300' }} />
       <Box sx={{ width: '80%', height: 200, borderRadius: '8px', my: 2, bgcolor: 'grey.300' }} />
     </Box>
+    // </ThemeProvider>
   );
 }
 
