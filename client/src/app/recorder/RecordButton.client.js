@@ -11,6 +11,8 @@ import {Mic} from '@mui/icons-material'
 
 const socket = io('http://localhost:5000')
 
+const ROLE = 'therapist'
+
 export default function RecordButton() {
   const [recording, setRecording] = useState(false)
 
@@ -22,8 +24,11 @@ export default function RecordButton() {
     setRecording(false)
   }
 
-  function onAudio(audio) {
-    socket.emit('audio_chunk', audio)
+  function onAudio(audio) {git
+    socket.emit('audio_chunk', {
+      role: ROLE,
+      content: audio,
+    })
   }
 
   return (

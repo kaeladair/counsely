@@ -25,11 +25,11 @@ def index():
     return "Audio Transcription Service"
     
 @socketio.on('audio_chunk')
-def handle_audio_chunk(audio_data):
+def handle_audio_chunk(message):
     print("Received audio chunk")
     
     # Process audio data that is base64 encoded
-    sr, audio_np = transcriber.decode_audio_to_np_array(audio_data)
+    sr, audio_np = transcriber.decode_audio_to_np_array(message.content)
     
     # Transcribe
     user_text = transcriber.transcribe(audio_np, sr)
@@ -40,7 +40,11 @@ def handle_audio_chunk(audio_data):
     def transaction_update(transcriptions):
         if transcriptions is None:
             transcriptions = []
-        transcriptions.append(user_text)
+        transcriptions.append({
+            'role': message.role,
+            'text': user_text
+        
+        })
         return transcriptions
 
     ref.child('transcriptions').transaction(transaction_update)
