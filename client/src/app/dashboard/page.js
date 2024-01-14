@@ -1,19 +1,20 @@
 //* metrics dashboard view
-"use client";
+'use client'
 
-import React, { useEffect } from "react";
-import { Stack, Button, Modal, Box } from "@mui/material";
+import React, {useEffect, useState} from 'react'
+import {Stack, Button, Modal, Box} from '@mui/material'
 
-import "../../app/global.css";
+import '../../app/global.css'
 
-import RightPanel from "./rightPanel";
-import Metrics from "./metrics";
+import RightPanel from './rightPanel'
+import Metrics from './metrics'
 
 import db from '../firebase'
 import {ref, get, child} from 'firebase/database'
 
 function Dashboard() {
-  const [data, setData] = React.useState(null);
+  const [open, setOpen] = React.useState(false)
+  const [data, setData] = React.useState(null)
   useEffect(() => {
     const postAnalysisRef = ref(db, '/conversation/post_analysis')
 
@@ -28,13 +29,13 @@ function Dashboard() {
           }
         })
       } catch (error) {
-        console.error("Error fetching data: ", error);
+        console.error('Error fetching data: ', error)
         // Handle the error according to your needs
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
   const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -46,7 +47,7 @@ function Dashboard() {
     p: 4,
     borderRadius: '12px',
     outline: 'none', // Removes the default focus outline
-  };
+  }
   return data ? (
     <Stack
       width="100vw"
@@ -67,7 +68,6 @@ function Dashboard() {
     <Stack>
       <Button
         variant="contained"
-   
         sx={{
           color: 'primary',
           fontSize: '14px',
@@ -100,7 +100,7 @@ function Dashboard() {
         </Box>
       </Modal>
     </Stack>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

@@ -118,7 +118,7 @@ export default function Metrics({data}) {
           marginTop: '0px',
         }}
       >
-        Kael's 10am Hackathon Therapy Session
+        Kael&apos;s 10am Hackathon Therapy Session
       </Typography>
       <Stack direction="column">
         <Typography

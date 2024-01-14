@@ -1,7 +1,7 @@
 import React from 'react'
 import {Box, Stack, Typography} from '@mui/material'
 import {useAnalysis} from './FirebaseContext'
-function patientMood() {
+function PatientMood() {
   const analysis = useAnalysis()
   return (
     <Box
@@ -84,4 +84,4 @@ function patientMood() {
   )
 }
 
-export default patientMood
+export default PatientMood
