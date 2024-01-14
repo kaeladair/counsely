@@ -1,9 +1,10 @@
 import {Directions} from '@mui/icons-material'
-import {Grid, LinearProgress, Typography, Stack} from '@mui/material'
+import {LinearProgress, Typography, Stack} from '@mui/material'
 
 export default function Emotions({data}) {
   return (
-    <Grid
+    <>
+    <Stack
       container
       spacing={2.75} // This will create a gap of 8px * 1.5 = 12px between items
       sx={{
@@ -11,21 +12,26 @@ export default function Emotions({data}) {
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%',
+        flexDirection: 'row',
+        alignItems:"flex-end",
+        gap: '22px',
       }}
     >
       {/* emotion container */}
-      <Grid
+      <Stack
         item
         xs={6}
         style={{
           display: 'flex',
+          
+        height: '100%',
           gap: '12px',
           alignItems: 'center',
           backgroundColor: '#fff',
           borderRadius: '20px',
           padding: '18px',
-          width: 'fit-content',
-
+          width: '100%',
+          flexDirection:'row',
           alignContent: 'center',
         }}
       >
@@ -63,19 +69,21 @@ export default function Emotions({data}) {
             }}
           />
         </Stack>
-      </Grid>
+      </Stack>
       {/* emotion container */}
-      <Grid
+      <Stack
         item
         xs={6}
         style={{
           display: 'flex',
           gap: '12px',
+          flexDirection:'row',
           alignItems: 'center',
           backgroundColor: '#fff',
           borderRadius: '20px',
           padding: '18px',
-          width: 'fit-content',
+          width: '100%',
+          height: '100%',
 
           alignContent: 'center',
         }}
@@ -114,21 +122,41 @@ export default function Emotions({data}) {
             }}
           />
         </Stack>
-      </Grid>
+      </Stack>
+</Stack>
+    
+      <Stack
+      container
+      spacing={2.75} // This will create a gap of 8px * 1.5 = 12px between items
+      sx={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%',
+        flexDirection: 'row',
+        gap: '22px',
+        alignItems:'flex-end',
+        marginTop:'0px'
+      }}
+    >
       {/* emotion container */}
-      <Grid
+      <Stack
         item
         xs={6}
         style={{
           display: 'flex',
           gap: '12px',
+          flexDirection:'row',
           alignItems: 'center',
           backgroundColor: '#fff',
           borderRadius: '20px',
           padding: '18px',
-          width: 'fit-content',
-
+          width: '100%',
+          
+          height: '100%',
           alignContent: 'center',
+          
+        alignItems:'flex-end'
         }}
       >
         <FearEmoji />
@@ -165,19 +193,23 @@ export default function Emotions({data}) {
             }}
           />
         </Stack>
-      </Grid>
+      </Stack>
       {/* emotion container */}
-      <Grid
+      <Stack
         item
         xs={6}
         style={{
           display: 'flex',
           gap: '12px',
+          flexDirection:'row',
           alignItems: 'center',
           backgroundColor: '#fff',
           borderRadius: '20px',
           padding: '18px',
-          width: 'fit-content',
+          height: '100%',
+          
+        alignItems:'flex-end',
+          width: '100%',
 
           alignContent: 'center',
         }}
@@ -216,8 +248,10 @@ export default function Emotions({data}) {
             }}
           />
         </Stack>
-      </Grid>
-    </Grid>
+        </Stack>
+      </Stack>
+      </>
+
   )
 }
 

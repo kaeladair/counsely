@@ -1,9 +1,10 @@
-import {Stack, Avatar, Typography, Chip, Icon} from '@mui/material'
-import IconContain from '@/components/IconContain'
-import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded'
-import LocalLibraryRoundedIcon from '@mui/icons-material/LocalLibraryRounded'
-import Tag from '@/components/Tag'
-export default function Profile({data}) {
+import { Stack, Typography, Chip, Icon } from "@mui/material";
+import IconContain from "@/components/IconContain";
+import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
+import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
+import Tag from "@/components/Tag";
+
+export default function Profile({ data }) {
   return (
     <Stack
       width="100%"
@@ -17,14 +18,14 @@ export default function Profile({data}) {
       padding="32px 22px"
       alignContent="center"
     >
-      <Avatar />
+      <img src={"/personImg.png"} />
       <Typography
         variant="h4"
         gutterBottom
         sx={{
-          fontWeight: '800',
-          fontFamily: 'Inter, sans-serif',
-          fontSize: '24px',
+          fontWeight: "800",
+          fontFamily: "Inter, sans-serif",
+          fontSize: "24px",
         }}
       >
         Kael
@@ -43,10 +44,10 @@ export default function Profile({data}) {
             gutterBottom
             color="text.primary"
             sx={{
-              fontWeight: '500',
-              fontFamily: 'Inter,sans-serif',
-              color: 'rgba(0,0,0,.5)',
-              fontSize: '12px',
+              fontWeight: "500",
+              fontFamily: "Inter,sans-serif",
+              color: "rgba(0,0,0,.5)",
+              fontSize: "12px",
             }}
           >
             Communication style
@@ -54,9 +55,9 @@ export default function Profile({data}) {
           <Typography
             variant="h6"
             sx={{
-              fontWeight: '800',
-              fontFamily: 'Inter,sans-serif',
-              fontSize: '16px',
+              fontWeight: "800",
+              fontFamily: "Inter,sans-serif",
+              fontSize: "16px",
             }}
           >
             {data?.profile.communication_style}
@@ -77,10 +78,10 @@ export default function Profile({data}) {
             gutterBottom
             color="text.primary"
             sx={{
-              fontWeight: '500',
-              fontFamily: 'Inter,sans-serif',
-              color: 'rgba(0,0,0,.5)',
-              fontSize: '12px',
+              fontWeight: "500",
+              fontFamily: "Inter,sans-serif",
+              color: "rgba(0,0,0,.5)",
+              fontSize: "12px",
             }}
           >
             Learning style
@@ -88,9 +89,9 @@ export default function Profile({data}) {
           <Typography
             variant="h6"
             sx={{
-              fontWeight: '800',
-              fontFamily: 'Inter,sans-serif',
-              fontSize: '16px',
+              fontWeight: "800",
+              fontFamily: "Inter,sans-serif",
+              fontSize: "16px",
             }}
           >
             {data?.profile.learning_style}
@@ -116,5 +117,5 @@ export default function Profile({data}) {
         </Stack>
       </Stack>
     </Stack>
-  )
+  );
 }

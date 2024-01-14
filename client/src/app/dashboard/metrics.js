@@ -14,7 +14,7 @@ export default function Metrics({data}) {
       width="100%"
       maxWidth="1000px"
       padding="0px 36px"
-      height="calc(100vh-30px)"
+      height="80vh"
       alignItems="flex-start"
       justifyContent="flex-start"
     >
@@ -23,7 +23,7 @@ export default function Metrics({data}) {
         justifyContent="center"
         alignItems="center"
         width="100%"
-        height="40px"
+        minHeight="40px"
         padding="4px 12px"
         borderRadius="16px"
         border="2px solid rgba(233, 90, 90, 0.75)"
