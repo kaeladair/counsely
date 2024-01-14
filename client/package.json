@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
+    "firebase": "^10.7.1",
     "install": "^0.13.0",
     "next": "14.0.4",
     "npm": "^10.3.0",
