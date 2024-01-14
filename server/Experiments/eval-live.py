@@ -1,41 +1,36 @@
 from openai import OpenAI
-import firebase_admin
-from firebase_admin import credentials, db
 
 
-def update_mood(recents) -> str:
+async def live_eval(messages):
 
-  client = OpenAI()
+  client = OpenAI() # Not sure if this is necessary in the program flow.
 
-  cred = credentials.Certificate("firebase.json")
-  firebase_admin.initialize_app(cred)
-  firebase_db_url = "https://therapy-assist-default-rtdb.firebaseio.com/"
+  content = """
+  You will be given the transcript of what a patient told a therapist during a therapy session. 
+  Generate a json with the following information:
+  {
+  "advice": 
+    {
+    "recommendation": "a 60 to 80 character specific recommendation to the therapist to aid them in helping the client",
+    "tag": "an emoji followed by one word to summarize the corresponding recommendation"
+    },
+  "mood": "one of the following four words to best describe the client's current mood: Hopeful, Melancholy, Frustrated, Fearful"
+  }
+  """
 
-  ref = db.reference('/post', url=firebase_db_url)
-  res = {} # TODO: make complete response
+  messages = [
+      {"role": "system", "content": content},
+      {'role': 'user', 'content': messages}
+  ]
 
-  message_array = [
-      {"role": "system", "content": "You will be given the transcript of a therapy session. Analyze the aggregate sentiment and return the emotion of the tone conveyed. You may only say one word, and it must be one of these five: Bored, Hopeful, Frustrated, Melancholy, Surprised"},
-    ]
-
-  no_client = True
-  for dialogue in recents:
-    if dialogue.role == "client":
-      no_client = False
-      break
-  if no_client: return # do not update the emotion if the client hasn't spoken in the last 6
-
-  for dialogue in recents:
-    if dialogue.role == "client":
-      message_array.append({"role": "user", "content": dialogue.content})
-
-  response = client.chat.completions.create(
+  response = await client.chat.completions.create(
     model="gpt-3.5-turbo",
-    messages=message_array,
+    response_format={ "type": "json_object" },
+    messages=messages,
     temperature=0
   )
 
-  ref.child('mood').update(response.choices[0].message.content)
-
+  res = response.choices[0].message.content
+  return res
 
 
