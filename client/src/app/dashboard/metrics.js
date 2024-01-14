@@ -3,7 +3,6 @@ import {Stack, Box, Typography, Chip, Button} from '@mui/material'
 import PercentageContain from './PercentageContain'
 import ChatRoundedIcon from '@mui/icons-material/ChatRounded'
 import Emotions from './emotions'
-import Sidebar from '@/components/Sidebar'
 import Tag from '@/components/Tag'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 export default function Metrics({data}) {
