@@ -24,7 +24,7 @@ export default function RecordButton() {
     setRecording(false)
   }
 
-  function onAudio(audio) {git
+  function onAudio(audio) {
     socket.emit('audio_chunk', {
       role: ROLE,
       content: audio,

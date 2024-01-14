@@ -29,7 +29,7 @@ def handle_audio_chunk(message):
     print("Received audio chunk")
     
     # Process audio data that is base64 encoded
-    sr, audio_np = transcriber.decode_audio_to_np_array(message.content)
+    sr, audio_np = transcriber.decode_audio_to_np_array(message['content'])
     
     # Transcribe
     user_text = transcriber.transcribe(audio_np, sr)
@@ -41,7 +41,7 @@ def handle_audio_chunk(message):
         if transcriptions is None:
             transcriptions = []
         transcriptions.append({
-            'role': message.role,
+            'role': message['role'],
             'text': user_text
         
         })
