@@ -10,7 +10,8 @@ function Percentage(props, circleColor) {
         alignItems: "center",
           justifyContent: "center",
           display: "flex",
-          marginBottom: "12px"
+          marginBottom: "12px",
+          position: "relative"
       }}
     >
       {/* Background progress */}

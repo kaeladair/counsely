@@ -7,7 +7,7 @@ function IconContain({bgColor, iconColor, icon}) {
       backgroundColor={bgColor}
       sx={{
         fontSize: 'inherit',
-        padding: '8px',
+        padding: '4px',
         borderRadius: '12px',
         width: 'fit-content',
         height: 'fit-content',

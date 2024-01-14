@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Button, Modal, Box } from "@mui/material";
 
 import "../../app/global.css";
 
@@ -54,7 +54,8 @@ function Dashboard() {
       direction="row"
       alignItems="center"
       justifyContent="space-between"
-      overflow="hidden"
+      overflow="scroll"
+      top="0"
       paddingY="30px"
       paddingRight="30px"
       paddingLeft="110px"
@@ -66,7 +67,7 @@ function Dashboard() {
     <Stack>
       <Button
         variant="contained"
-        onClick={handleOpen}
+   
         sx={{
           color: 'primary',
           fontSize: '14px',
@@ -84,7 +85,7 @@ function Dashboard() {
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
         sx={{
